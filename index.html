@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script>
+      const counter = setInterval(() => {
+        let count = Number(document.getElementById("counter").innerText.split("$")[1].replace(/,/g, ''));
+        count += 1;
+        document.getElementById("counter").innerText = `USD $ ${count.toLocaleString()}`;
+      }, 86400 / 300000);
+    </script>
+    <style>
+      #counter {
+        font-size: 120px;
+        font-weight: bold;
+        font-family: "Poppins Bold", sans-serif;
+        color: red;
+        text-align: center;
+        margin-top: 200px;
+        letter-spacing: -4px;
+        kerning: 0.3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="counter">USD $ 84,763,000</div>
+  </body>
+</html>
