@@ -72,18 +72,20 @@
           width: 85vw;
         }
         .container {
-          height: 26vmin;
-          width: 26vmin;
+          width: 50vw;
+          height: 20vw;
           font-size: 12px;
         }
       }
       @media screen and (max-width: 768px) {
         .wrapper {
           width: 90vw;
+          flex-wrap: wrap;
+          gap: 30px;
         }
         .container {
-          width: 100vw;
-          height: 30vmin;
+          width: calc(100% - 40px);
+          height: 35vw;
           font-size: 14px;
         }
         i {
