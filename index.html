@@ -90,15 +90,17 @@
         width: 50vw;
         font-size: 12px;
       }
-      @media screen and (max-width: 768px) {
-        .wrapper {
-          width: 90vw;
-          flex-wrap: wrap;
-          gap: 30px;
-        }
-        .container {
-          width: calc(100% - 40px);
-          height: 35vw;
+    }
+    @media screen and (max-width: 768px) {
+      .wrapper {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 30px;
+        height: auto;
+      }
+      .container {
+        width: 100%;
+        height: auto;
           font-size: 14px;
         }
         i {
