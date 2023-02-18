@@ -23,15 +23,14 @@
       }
 
       /* Apply rotation and adjust width on smaller screens */
-@media only screen and (max-width: 1024px) {
-  #counter {
-    transform: rotate(90deg);
-    width: 80vh;
-    height: 60vw;
-    left: -25vh;
-    top: 10vw;
-  }
-}
+      @media only screen and (min-width: 1024px) {
+        #counter {
+          transform: none;
+          width: 30rem;
+          height: 12rem;
+        }
+      }
+
       * {
         padding: 0;
         margin: 0;
