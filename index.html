@@ -11,6 +11,24 @@
     <meta property="og:type" content="website">
     <title>DRC Lost Revenue Counter</title>
     <style>
+      /* Set up default styles for all devices */
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #121317;
+      }
+
+      /* Apply rotation only on mobile devices */
+      @media only screen and (max-width: 768px) {
+        #counter {
+          transform: rotate(90deg);
+        }
+      }
+
       * {
         padding: 0;
         margin: 0;
