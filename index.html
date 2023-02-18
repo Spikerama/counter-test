@@ -22,13 +22,16 @@
         background-color: #121317;
       }
 
-      /* Apply rotation only on mobile devices */
-      @media only screen and (max-width: 768px) {
-        #counter {
-          transform: rotate(90deg);
-        }
-      }
-
+      /* Apply rotation and adjust width on smaller screens */
+@media only screen and (max-width: 1024px) {
+  #counter {
+    transform: rotate(90deg);
+    width: 80vh;
+    height: 60vw;
+    left: -25vh;
+    top: 10vw;
+  }
+}
       * {
         padding: 0;
         margin: 0;
