@@ -30,7 +30,6 @@ body {
     text-align: left;
     width: 600px;
     line-height: 1.4;
-    margin-bottom: 20px;
     position: absolute;
     top: 12%;
     left: 50%;
@@ -42,7 +41,7 @@ body {
     display: block;
 }
 
-/* Mobile Headline (hidden by default) */
+/* Mobile Headline */
 .mobile-headline {
     display: none;
 }
@@ -84,27 +83,27 @@ body {
     font-weight: 600;
 }
 
-/* ✅ Context Text (Animated) */
+/* ✅ Context Text (Animated Venetian Blind Effect) */
 .context-text {
     font-size: 1em;
     text-align: center;
     width: 600px;
     position: absolute;
-    bottom: 10%;  /* Moves it down to avoid overlap */
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.5;
 }
 
-/* Ensure First Text Set is Visible */
+/* Hide all text sets initially */
 .text-set {
     opacity: 0;
     position: absolute;
     width: 100%;
 }
 
-.text-set:first-child {
-    opacity: 1; /* ✅ Ensures first text is visible on page load */
+.text-set p {
+    opacity: 0; /* Ensure each line is hidden initially */
 }
 
 /* ✅ Mobile Optimization */
@@ -112,13 +111,9 @@ body {
     .header-text {
         font-size: 1.4em;
         width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: left;
         top: 8%;
     }
 
-    /* Hide Desktop Headline & Show Mobile Version */
     .desktop-headline {
         display: none;
     }
@@ -126,7 +121,6 @@ body {
         display: block;
     }
 
-    /* Make countdown responsive */
     .countdown-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -138,7 +132,6 @@ body {
 
     .counter {
         width: 100%;
-        height: auto;
         aspect-ratio: 1 / 1;
         padding: 20px;
     }
@@ -154,8 +147,6 @@ body {
     .context-text {
         font-size: 0.9em;
         width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
         top: 48%;
     }
 }
@@ -195,28 +186,28 @@ body {
 
 <!-- Animated Text Sections -->
 <div class="context-text">
-    <div class="text-set set-1">
-        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
-        <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    <div class="text-set">
+        <p>The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
+        <p>This decision will determine control of the world's largest lithium deposit.</p>
+        <p>AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
 
-    <div class="text-set set-2">
-        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
-        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
-        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    <div class="text-set">
+        <p>On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p>legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p>The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
     </div>
 
-    <div class="text-set set-3">
-        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
-        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    <div class="text-set">
+        <p>The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
+        <p>This decision could reshape control over one of the world's largest lithium deposits.</p>
+        <p>AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
 
-    <div class="text-set set-4">
-        <p class="reveal-text">Global investors are closely watching as the ruling nears.</p>
-        <p class="reveal-text">The final outcome will have major implications for the lithium industry.</p>
-        <p class="reveal-text">Legal clarity could determine future investment in the DRC.</p>
+    <div class="text-set">
+        <p>Global investors are closely watching as the ruling nears.</p>
+        <p>The final outcome will have major implications for the lithium industry.</p>
+        <p>Legal clarity could determine future investment in the DRC.</p>
     </div>
 </div>
 
@@ -242,12 +233,21 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// GSAP Animation (Cycles Text)
+// GSAP Venetian Blind Effect
 let textSets = document.querySelectorAll(".text-set");
 let timeline = gsap.timeline({ repeat: -1 });
 
 textSets.forEach((set, index) => {
-    timeline.to(set, { opacity: 1, duration: 0.5 }).to(set, { opacity: 0, duration: 1, delay: 2 });
+    let lines = set.querySelectorAll("p");
+    timeline.to(set, { opacity: 1, duration: 0.5 });
+
+    gsap.to(lines, {
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.5
+    });
+
+    timeline.to(set, { opacity: 0, duration: 1, delay: 3 });
 });
 </script>
 
