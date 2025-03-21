@@ -48,4 +48,200 @@ body {
 }
 
 /* ✅ Countdown Timer */
-.count
+.countdown-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 40%;
+}
+
+/* ✅ Countdown Boxes */
+.counter {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.num {
+    font-size: 4em;
+    font-weight: 700;
+}
+
+.text {
+    font-size: 0.75em;
+    transform: translateY(-8px);
+    opacity: 0.7;
+    font-weight: 600;
+}
+
+/* ✅ Context Text */
+.context-text {
+    font-size: 1em;
+    text-align: left;
+    width: 600px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.5;
+}
+
+/* Hide all text sets initially */
+.text-set {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+}
+
+/* ✅ Mobile Optimization */
+@media (max-width: 768px) {
+    .header-text {
+        font-size: 1.4em;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: left;
+        top: 8%;
+    }
+
+    /* Hide Desktop Headline & Show Mobile Version */
+    .desktop-headline {
+        display: none;
+    }
+    .mobile-headline {
+        display: block;
+    }
+
+    /* Make countdown responsive */
+    .countdown-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 90%;
+        max-width: 400px;
+        top: 30%;
+    }
+
+    .counter {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        padding: 20px;
+    }
+
+    .num {
+        font-size: 3em;
+    }
+
+    .text {
+        font-size: 0.85em;
+    }
+
+    .context-text {
+        font-size: 0.9em;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 48%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="header-text">
+    <span class="desktop-headline">
+        ICSID arbitration tribunal of AVZ vs<br>
+        The Democratic Republic of the Congo.
+    </span>
+    <span class="mobile-headline">
+        ICSID arbitration tribunal of AVZ<br> 
+        vs The Democratic Republic of the Congo.
+    </span>
+</div>
+
+<div class="countdown-container">
+    <div class="counter">
+        <span class="num days">00</span>
+        <div class="text">DAYS</div>
+    </div>
+    <div class="counter">
+        <span class="num hours">00</span>
+        <div class="text">HOURS</div>
+    </div>
+    <div class="counter">
+        <span class="num minutes">00</span>
+        <div class="text">MINUTES</div>
+    </div>
+    <div class="counter">
+        <span class="num seconds">00</span>
+        <div class="text">SECONDS</div>
+    </div>
+</div>
+
+<!-- Animated Text Sections -->
+<div class="context-text">
+    <div class="text-set set-1">
+        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
+        <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
+        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
+
+    <div class="text-set set-3">
+        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
+        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
+        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    </div>
+
+    <div class="text-set set-4">
+        <p class="reveal-text">Global investors are closely watching as the ruling nears.</p>
+        <p class="reveal-text">The final outcome will have major implications for the lithium industry.</p>
+        <p class="reveal-text">Legal clarity could determine future investment in the DRC.</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+const countdownDate = new Date("2025-06-02T00:00:00").getTime();
+const daysElem = document.querySelector(".days");
+const hoursElem = document.querySelector(".hours");
+const minutesElem = document.querySelector(".minutes");
+const secondsElem = document.querySelector(".seconds");
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysElem.textContent = days < 10 ? `0${days}` : days;
+    hoursElem.textContent = hours < 10 ? `0${hours}` : hours;
+    minutesElem.textContent = minutes < 10 ? `0${minutes}` : minutes;
+    secondsElem.textContent = seconds < 10 ? `0${seconds}` : seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
