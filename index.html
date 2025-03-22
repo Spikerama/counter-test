@@ -23,7 +23,7 @@ body {
     padding: 2rem;
 }
 
-/* ✅ Responsive Font Scaling */
+/* ✅ Responsive Scaling */
 html {
     font-size: 1.2rem; /* Base scaling */
 }
@@ -36,18 +36,18 @@ html {
 
 @media (max-width: 1200px) {
     html {
-        font-size: 1.1rem; /* Adjust slightly smaller for mid-sized screens */
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 768px) {
     html {
-        font-size: 1rem; /* Reset to normal for mobile */
+        font-size: 1rem;
     }
 }
 
-/* ✅ Desktop Headline */
-.header-text-desktop {
+/* ✅ Header */
+.header-text {
     font-size: 1.8rem;
     font-weight: 600;
     text-align: left;
@@ -58,26 +58,12 @@ html {
     transform: translateX(-50%);
 }
 
-/* ✅ Mobile Headline */
-.header-text-mobile {
-    font-size: 3rem;
-    font-weight: 600;
-    text-align: left;
-    width: 90%;
-    position: absolute;
-    top: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-}
-
-/* ✅ Countdown Timer */
+/* ✅ Countdown */
 .countdown-container {
     display: flex;
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    width: 100%;
     position: absolute;
     top: 35%;
     left: 50%;
@@ -104,13 +90,12 @@ html {
 
 .text {
     font-size: 1rem;
-    transform: translateY(-2px);
     opacity: 0.7;
     font-weight: 600;
 }
 
-/* ✅ Desktop Context Text */
-.context-text-desktop {
+/* ✅ Context Text */
+.context-text {
     font-size: 1rem;
     text-align: left;
     width: 40rem;
@@ -121,32 +106,31 @@ html {
     line-height: 1.5;
 }
 
-/* ✅ Mobile Context Text */
-.context-text-mobile {
-    font-size: 1.4rem;
-    text-align: left;
-    width: 90%;
-    position: absolute;
-    top: 86%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-}
-
-/* Hide all text sets initially */
+/* ✅ Text Set Styling */
 .text-set {
     opacity: 0;
     position: absolute;
     width: 100%;
 }
 
-/* ✅ Mobile Optimization */
-@media (max-width: 768px) {
-    .header-text-desktop { display: none; } 
-    .header-text-mobile { display: block; }
+.reveal-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
 
-    .context-text-desktop { display: none; }
-    .context-text-mobile { display: block; }
+.active .reveal-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ✅ Mobile Optimizations */
+@media (max-width: 768px) {
+    .header-text {
+        font-size: 3rem;
+        width: 90%;
+        top: 8%;
+    }
 
     .countdown-container {
         display: grid;
@@ -171,26 +155,26 @@ html {
     .text {
         font-size: 1.2rem;
     }
+
+    .context-text {
+        font-size: 1.4rem;
+        width: 90%;
+        top: 86%;
+    }
 }
 </style>
 </head>
 <body>
 
-<!-- ✅ Wrap everything inside this container -->
 <div class="content-container">
 
-    <!-- ✅ Desktop Headline -->
-    <div class="header-text-desktop">
+    <!-- ✅ Header -->
+    <div class="header-text">
         ICSID arbitration tribunal of AVZ vs DRC<br>
         The Democratic Republic of Corruption.
     </div>
 
-    <!-- ✅ Mobile Headline -->
-    <div class="header-text-mobile">
-        ICSID tribunal<br>
-        AVZ vs DRC.
-    </div>
-
+    <!-- ✅ Countdown -->
     <div class="countdown-container">
         <div class="counter">
             <span class="num days">00</span>
@@ -210,8 +194,8 @@ html {
         </div>
     </div>
 
-    <!-- ✅ Desktop Animated Text -->
-    <div class="context-text-desktop">
+    <!-- ✅ Context Text & Text Sets -->
+    <div class="context-text">
         <div class="text-set set-1">
             <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
             <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
@@ -228,6 +212,7 @@ html {
             <p class="reveal-text">The corruption is documented by the General Inspectorate of Finance.</p>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -249,6 +234,19 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+// ✅ Animate Text Sets in Sequence
+const textSets = document.querySelectorAll(".text-set");
+let index = 0;
+
+function showNextTextSet() {
+    textSets.forEach(set => set.classList.remove("active"));
+    textSets[index].classList.add("active");
+    index = (index + 1) % textSets.length;
+}
+
+setInterval(showNextTextSet, 5000);
+showNextTextSet();
 </script>
 
 </body>
