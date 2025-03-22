@@ -13,7 +13,7 @@
 }
 
 body {
-    background: url('https://www.nasa.gov/wp-content/uploads/2023/03/127a0959.jpeg') no-repeat center center/cover;
+    background: url('https://www.pixelstalk.net/wp-conte...rth-at-night-view-from-space-4k-wallpaper.jpg') no-repeat center center/cover;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -29,23 +29,33 @@ body {
     font-weight: 600;
     text-align: left;
     width: 600px;
-    line-height: 1.4;
     position: absolute;
-    top: 12%;
-    left: 15%; /* Aligns with countdown */
+    top: 10%;  /* Adjusted spacing */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Desktop Headline (default) */
+.desktop-headline {
+    display: block;
+}
+
+/* Mobile Headline (hidden by default) */
+.mobile-headline {
+    display: none;
 }
 
 /* ✅ Countdown Timer */
 .countdown-container {
     display: flex;
     gap: 20px;
-    justify-content: flex-start; /* Align left */
+    justify-content: center;
     align-items: center;
-    width: 600px;
-    margin-bottom: 30px;
+    width: 100%;
     position: absolute;
-    top: 40%;
-    left: 15%;
+    top: 35%; /* Adjusted spacing */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* ✅ Countdown Boxes */
@@ -73,36 +83,43 @@ body {
     font-weight: 600;
 }
 
-/* ✅ Context Text (Left-Aligned & Animated) */
+/* ✅ Context Text */
 .context-text {
     font-size: 1em;
     text-align: left;
     width: 600px;
     position: absolute;
-    bottom: 10%;
-    left: 15%;
+    top: 60%; /* Adjusted spacing */
+    left: 50%;
+    transform: translateX(-50%);
     line-height: 1.5;
 }
 
 /* Hide all text sets initially */
 .text-set {
-    opacity: 0;
     position: absolute;
     width: 100%;
-}
-
-.text-set p {
-    opacity: 0; /* Ensure each line is hidden initially */
+    opacity: 0;
 }
 
 /* ✅ Mobile Optimization */
 @media (max-width: 768px) {
-    .header-text, .countdown-container, .context-text {
+    .header-text {
+        font-size: 1.4em;
         width: 90%;
-        left: 5%;
-        top: auto;
+        text-align: left;
+        top: 8%; 
     }
 
+    /* Hide Desktop Headline & Show Mobile Version */
+    .desktop-headline {
+        display: none;
+    }
+    .mobile-headline {
+        display: block;
+    }
+
+    /* Make countdown responsive */
     .countdown-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -114,6 +131,7 @@ body {
 
     .counter {
         width: 100%;
+        height: auto;
         aspect-ratio: 1 / 1;
         padding: 20px;
     }
@@ -129,7 +147,9 @@ body {
     .context-text {
         font-size: 0.9em;
         width: 90%;
-        top: 55%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50%;
     }
 }
 </style>
@@ -137,7 +157,14 @@ body {
 <body>
 
 <div class="header-text">
-    ICSID arbitration tribunal of AVZ vs The Democratic Republic of the Congo.
+    <span class="desktop-headline">
+        ICSID arbitration tribunal of AVZ vs<br>
+        The Democratic Republic of the Congo.
+    </span>
+    <span class="mobile-headline">
+        ICSID arbitration tribunal of AVZ<br> 
+        vs The Democratic Republic of the Congo.
+    </span>
 </div>
 
 <div class="countdown-container">
@@ -159,36 +186,35 @@ body {
     </div>
 </div>
 
-<!-- Animated Text Sections -->
+<!-- ✅ Animated Text Sections -->
 <div class="context-text">
-    <div class="text-set">
-        <p>The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
-        <p>This decision will determine control of the world's largest lithium deposit.</p>
-        <p>AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    <div class="text-set set-1">
+        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
+        <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
+        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
 
-    <div class="text-set">
-        <p>On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
-        <p>legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
-        <p>The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
     </div>
 
-    <div class="text-set">
-        <p>The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
-        <p>This decision could reshape control over one of the world's largest lithium deposits.</p>
-        <p>AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    <div class="text-set set-3">
+        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
+        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
+        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
 
-    <div class="text-set">
-        <p>Global investors are closely watching as the ruling nears.</p>
-        <p>The final outcome will have major implications for the lithium industry.</p>
-        <p>Legal clarity could determine future investment in the DRC.</p>
+    <div class="text-set set-4">
+        <p class="reveal-text">Global investors are closely watching as the ruling nears.</p>
+        <p class="reveal-text">The final outcome will have major implications for the lithium industry.</p>
+        <p class="reveal-text">Legal clarity could determine future investment in the DRC.</p>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-// Countdown Timer
 const countdownDate = new Date("2025-06-02T00:00:00").getTime();
 const daysElem = document.querySelector(".days");
 const hoursElem = document.querySelector(".hours");
@@ -199,33 +225,14 @@ function updateCountdown() {
     const now = new Date().getTime();
     const distance = countdownDate - now;
 
-    daysElem.textContent = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
-    hoursElem.textContent = new Date(distance).getUTCHours().toString().padStart(2, '0');
-    minutesElem.textContent = new Date(distance).getUTCMinutes().toString().padStart(2, '0');
-    secondsElem.textContent = new Date(distance).getUTCSeconds().toString().padStart(2, '0');
+    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
+    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
+    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
+    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
-
-// GSAP Venetian Blind Effect for ALL sets
-let textSets = document.querySelectorAll(".text-set");
-let timeline = gsap.timeline({ repeat: -1 });
-
-textSets.forEach((set, index) => {
-    let lines = set.querySelectorAll("p");
-
-    timeline.to(set, { opacity: 1, duration: 0.5 });
-
-    gsap.to(lines, {
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.5
-    });
-
-    timeline.to(set, { opacity: 0, duration: 1, delay: 3 });
-});
-
 </script>
 
 </body>
