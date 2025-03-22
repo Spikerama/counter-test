@@ -191,35 +191,11 @@ body {
         <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
         <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
-
-    <div class="text-set set-2">
-        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
-        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
-        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
-    </div>
-
-    <div class="text-set set-3">
-        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
-        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
-    </div>
 </div>
 
 <!-- ✅ Mobile Animated Text -->
 <div class="context-text-mobile">
     <div class="text-set set-1">
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-    </div>
-
-    <div class="text-set set-2">
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-    </div>
-
-    <div class="text-set set-3">
         <p class="reveal-text">This is a test set of text just for mobile.</p>
         <p class="reveal-text">This is a test set of text just for mobile.</p>
         <p class="reveal-text">This is a test set of text just for mobile.</p>
@@ -259,14 +235,14 @@ function animateTextSets() {
         gsap.fromTo(
             currentSet.querySelectorAll(".reveal-text"),
             { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, stagger: 0.5, duration: 1.5 }
+            { opacity: 1, y: 0, stagger: 0.3, duration: 1.2 }
         );
 
         setTimeout(() => {
-            gsap.to(currentSet, { opacity: 0, duration: 1 });
+            gsap.to(currentSet, { opacity: 0, duration: 0.8 });
             currentSetIndex = (currentSetIndex + 1) % textSets.length;
-            setTimeout(showNextSet, 1000);
-        }, 4000);
+            setTimeout(showNextSet, 300);
+        }, 3500);
     }
 
     showNextSet();
