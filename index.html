@@ -20,29 +20,43 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 2rem;
+    padding: 20px;
 }
 
-/* ✅ Manually Adjusted Sizes */
-.header-text {
-    font-size: 2.5rem;  /* Bigger text */
+/* ✅ Desktop Headline */
+.header-text-desktop {
+    font-size: 1.8em;
     font-weight: 600;
     text-align: left;
-    width: 50rem;  /* Wider */
+    width: 600px;
     position: absolute;
-    top: 18%;  /* Adjust this */
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* ✅ Countdown */
+/* ✅ Mobile Headline (Hidden on Desktop) */
+.header-text-mobile {
+    font-size: 3em;
+    font-weight: 600;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+/* ✅ Countdown Timer */
 .countdown-container {
     display: flex;
-    gap: 3rem;  /* More spacing */
+    gap: 20px;
     justify-content: center;
     align-items: center;
+    width: 100%;
     position: absolute;
-    top: 38%;  /* Adjust this */
+    top: 35%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -50,10 +64,10 @@ body {
 /* ✅ Countdown Boxes */
 .counter {
     background: rgba(255, 255, 255, 0.1);
-    padding: 3.5rem;  /* Bigger box */
+    padding: 40px;
     text-align: center;
-    width: 12rem;  /* Wider */
-    height: 12rem;  /* Taller */
+    width: 140px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,60 +75,62 @@ body {
 }
 
 .num {
-    font-size: 5rem;  /* Bigger numbers */
+    font-size: 3.8em;
     font-weight: 700;
 }
 
 .text {
-    font-size: 1.5rem;  /* Bigger labels */
+    font-size: 0.70em;
+    transform: translateY(-2px);
     opacity: 0.7;
     font-weight: 600;
 }
 
-/* ✅ Context Text */
-.context-text {
-    font-size: 1.5rem;  /* Bigger text */
+/* ✅ Desktop Context Text */
+.context-text-desktop {
+    font-size: 1em;
     text-align: left;
-    width: 50rem;  /* Wider */
+    width: 600px;
     position: absolute;
-    top: 62%;  /* Adjust this */
+    top: 60%;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.8;
+    line-height: 1.5;
 }
 
-/* ✅ Text Set Styling */
+/* ✅ Mobile Context Text (Hidden on Desktop) */
+.context-text-mobile {
+    font-size: 1.4em;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 86%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+/* Hide all text sets initially */
 .text-set {
     opacity: 0;
     position: absolute;
     width: 100%;
 }
 
-.reveal-text {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.active .reveal-text {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ✅ Mobile Fix */
+/* ✅ Mobile Optimization */
 @media (max-width: 768px) {
-    .header-text {
-        font-size: 2rem;
-        width: 90%;
-        top: 10%;
-    }
+    .header-text-desktop { display: none; } 
+    .header-text-mobile { display: block; }
+
+    .context-text-desktop { display: none; }
+    .context-text-mobile { display: block; }
 
     .countdown-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: 10px;
         width: 90%;
-        max-width: 30rem;
+        max-width: 400px;
         top: 30%;
     }
 
@@ -122,95 +138,120 @@ body {
         width: 100%;
         height: auto;
         aspect-ratio: 1 / 1;
-        padding: 2rem;
+        padding: 20px;
     }
 
     .num {
-        font-size: 3rem;
+        font-size: 5em;
     }
 
     .text {
-        font-size: 1rem;
-    }
-
-    .context-text {
-        font-size: 1.2rem;
-        width: 90%;
-        top: 85%;
+        font-size: 1em;
     }
 }
 </style>
 </head>
 <body>
 
-<div class="content-container">
-
-    <!-- ✅ Header -->
-    <div class="header-text">
-        ICSID arbitration tribunal of AVZ vs DRC<br>
-        The Democratic Republic of Corruption.
-    </div>
-
-    <!-- ✅ Countdown -->
-    <div class="countdown-container">
-        <div class="counter">
-            <span class="num days">00</span>
-            <div class="text">DAYS</div>
-        </div>
-        <div class="counter">
-            <span class="num hours">00</span>
-            <div class="text">HOURS</div>
-        </div>
-        <div class="counter">
-            <span class="num minutes">00</span>
-            <div class="text">MINUTES</div>
-        </div>
-        <div class="counter">
-            <span class="num seconds">00</span>
-            <div class="text">SECONDS</div>
-        </div>
-    </div>
-
-    <!-- ✅ Context Text & Text Sets -->
-    <div class="context-text">
-        <div class="text-set set-1">
-            <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
-            <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
-            <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
-        </div>
-
-        <div class="text-set set-2">
-            <p class="reveal-text">AVZ won a legal victory against Cominière in Paris.</p>
-            <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
-        </div>
-
-        <div class="text-set set-3">
-            <p class="reveal-text">$150 million worth of development was illegally seized.</p>
-            <p class="reveal-text">The corruption is documented by the General Inspectorate of Finance.</p>
-        </div>
-    </div>
-
+<!-- ✅ Desktop Headline -->
+<div class="header-text-desktop">
+    ICSID arbitration tribunal of AVZ vs DRC<br>
+    The Democratic Republic of Corruption.
 </div>
 
+<!-- ✅ Mobile Headline -->
+<div class="header-text-mobile">
+    ICSID tribunal<br>
+    AVZ vs DRC.
+</div>
+
+<div class="countdown-container">
+    <div class="counter">
+        <span class="num days">00</span>
+        <div class="text">DAYS</div>
+    </div>
+    <div class="counter">
+        <span class="num hours">00</span>
+        <div class="text">HOURS</div>
+    </div>
+    <div class="counter">
+        <span class="num minutes">00</span>
+        <div class="text">MINUTES</div>
+    </div>
+    <div class="counter">
+        <span class="num seconds">00</span>
+        <div class="text">SECONDS</div>
+    </div>
+</div>
+
+<!-- ✅ Desktop Animated Text -->
+<div class="context-text-desktop">
+    <div class="text-set set-1">
+        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
+        <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
+        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
+
+    <div class="text-set set-3">
+        <p class="reveal-text">$150 million worth of development by AVZ was illegally seized by Cominière.</p>
+        <p class="reveal-text">This corruption is documented by the General Inspectorate of Finance.</p>
+        <p class="reveal-text">Cominière, for a $6 million bribe, gifted the project to the Chinese.</p>
+    </div>
+
+    <div class="text-set set-4">
+        <p class="reveal-text">21,000 investors had their wealth stolen, lives ruined, hope squashed.</p>
+        <p class="reveal-text">Some have even died whilst waiting for justice in the courts.</p>
+        <p class="reveal-text">Meanwhile, Cominière & Zijin thumb their nose at court orders to desist.</p>
+    </div>
+
+    <div class="text-set set-5">
+        <p class="reveal-text">The people of the DRC should be thriving but their future has been raped.</p>
+        <p class="reveal-text">Manono's riches fund vacations for Elites, not roads, schools, or hospitals.</p>
+        <p class="reveal-text">The world is silent as Manono is looted, and the Congolese stay in poverty.</p>
+    </div>
+
+    <div class="text-set set-6">
+        <p class="reveal-text">AVZ is still fighting in international courts — and they’re winning.</p>
+        <p class="reveal-text">The truth is out and time is up for the corrupt elites of the DRC.</p>
+        <p class="reveal-text">A sunrise is about to shed light on it all. But it won’t be pretty.</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-const countdownDate = new Date("2025-06-02T00:00:00").getTime();
-const daysElem = document.querySelector(".days");
-const hoursElem = document.querySelector(".hours");
-const minutesElem = document.querySelector(".minutes");
-const secondsElem = document.querySelector(".seconds");
+const textSets = document.querySelectorAll(".text-set");
+let currentSetIndex = 0;
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
+function showNextSet() {
+    const currentSet = textSets[currentSetIndex];
+    gsap.to(currentSet, { opacity: 1, duration: 1 });
 
-    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
-    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
-    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
-    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
+    gsap.fromTo(
+        currentSet.querySelectorAll(".reveal-text"),
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 2.5, duration: 1.2 }
+    );
+
+    let delayBeforeNext = 10500;
+    let finalDelay = 3000;
+
+    setTimeout(() => {
+        gsap.to(currentSet, { opacity: 0, duration: 1.8 });
+
+        currentSetIndex = (currentSetIndex + 1) % textSets.length;
+        let nextDelay = (currentSetIndex === 0) ? finalDelay : 1500;
+
+        setTimeout(showNextSet, nextDelay);
+    }, delayBeforeNext);
 }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+showNextSet();
 </script>
 
 </body>
