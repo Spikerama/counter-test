@@ -251,7 +251,7 @@ function animateTextSets() {
             gsap.to(currentSet, { opacity: 0, duration: 1.8 });
             currentSetIndex = (currentSetIndex + 1) % textSets.length;
             setTimeout(showNextSet, 300);
-        }, 3500); // ⬅️ This used to be ~2500, now holds for 3.5s
+        }, 4500); // ⬅️ This used to be ~2500, now holds for 3.5s
     }
 
     showNextSet();
