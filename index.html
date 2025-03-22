@@ -197,31 +197,58 @@ body {
         <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
         <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
     </div>
-
+    
     <div class="text-set set-3">
-        <p class="reveal-text">$150 million worth of development by AVZ was illegally seized by Cominière.</p>
+        <p class="reveal-text">$150 millon worth of development by AVZ was illegally seized by Cominière.</p>
         <p class="reveal-text">This corruption is documented by the General Inspectorate of Finance.</p>
         <p class="reveal-text">Cominière, for a $6 million bribe, gifted the project to the Chinese.</p>
     </div>
 
-    <div class="text-set set-4">
+        <div class="text-set set-4">
         <p class="reveal-text">21,000 investors had their wealth stolen, lives ruined, hope squashed.</p>
         <p class="reveal-text">Some have even died whilst waiting for justice in the courts.</p>
         <p class="reveal-text">Meanwhile, Cominière & Zijin thumb their nose at court orders to desist.</p>
     </div>
 
-    <div class="text-set set-5">
+        <div class="text-set set-5">
         <p class="reveal-text">The people of the DRC should be thriving but their future has been raped.</p>
         <p class="reveal-text">Manono's riches fund vacations for Elites, not roads, schools, or hospitals.</p>
         <p class="reveal-text">The world is silent as Manono is looted, and the Congolese stay in poverty.</p>
     </div>
 
-    <div class="text-set set-6">
+        <div class="text-set set-6">
         <p class="reveal-text">AVZ is still fighting in international courts — and they’re winning.</p>
         <p class="reveal-text">The truth is out and time is up for the corrupt elites of the DRC.</p>
         <p class="reveal-text">A sunrise is about to shed light on it all. But it won’t be pretty.</p>
     </div>
 </div>
+
+<!-- ✅ Mobile Animated Text -->
+<div class="context-text-mobile">
+    <div class="text-set set-1">
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+const countdownDate = new Date("2025-06-02T00:00:00").getTime();
+const daysElem = document.querySelector(".days");
+const hoursElem = document.querySelector(".hours");
+const minutesElem = document.querySelector(".minutes");
+const secondsElem = document.querySelector(".seconds");
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
+    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
+    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
+    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
+}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
