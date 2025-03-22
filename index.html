@@ -23,9 +23,9 @@ body {
     padding: 20px;
 }
 
-/* ✅ Headline */
-.header-text {
-    font-size: 1.9em;
+/* ✅ Desktop Headline */
+.header-text-desktop {
+    font-size: 1.8em;
     font-weight: 600;
     text-align: left;
     width: 600px;
@@ -33,6 +33,19 @@ body {
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* ✅ Mobile Headline (Hidden on Desktop) */
+.header-text-mobile {
+    font-size: 1.4em;
+    font-weight: 600;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
 }
 
 /* ✅ Countdown Timer */
@@ -73,8 +86,8 @@ body {
     font-weight: 600;
 }
 
-/* ✅ Context Text */
-.context-text {
+/* ✅ Desktop Context Text */
+.context-text-desktop {
     font-size: 1em;
     text-align: left;
     width: 600px;
@@ -83,6 +96,18 @@ body {
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.5;
+}
+
+/* ✅ Mobile Context Text (Hidden on Desktop) */
+.context-text-mobile {
+    font-size: 0.9em;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
 }
 
 /* Hide all text sets initially */
@@ -94,12 +119,11 @@ body {
 
 /* ✅ Mobile Optimization */
 @media (max-width: 768px) {
-    .header-text {
-        font-size: 1.4em;
-        width: 90%;
-        text-align: left;
-        top: 8%; 
-    }
+    .header-text-desktop { display: none; } 
+    .header-text-mobile { display: block; }
+
+    .context-text-desktop { display: none; }
+    .context-text-mobile { display: block; }
 
     .countdown-container {
         display: grid;
@@ -124,22 +148,20 @@ body {
     .text {
         font-size: 0.85em;
     }
-
-    .context-text {
-        font-size: 0.9em;
-        width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 50%;
-    }
 }
 </style>
 </head>
 <body>
 
-<div class="header-text">
+<!-- ✅ Desktop Headline -->
+<div class="header-text-desktop">
     ICSID arbitration tribunal of AVZ vs<br>
     The Democratic Republic of the Congo.
+</div>
+
+<!-- ✅ Mobile Headline -->
+<div class="header-text-mobile">
+    ICSID tribunal: AVZ vs DRC dispute ruling.
 </div>
 
 <div class="countdown-container">
@@ -161,24 +183,19 @@ body {
     </div>
 </div>
 
-<!-- ✅ Animated Text Sections -->
-<div class="context-text">
+<!-- ✅ Desktop Animated Text -->
+<div class="context-text-desktop">
     <div class="text-set set-1">
         <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
         <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
+</div>
 
-    <div class="text-set set-2">
-        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
-        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
-        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
-    </div>
-
-    <div class="text-set set-3">
-        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
-        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+<!-- ✅ Mobile Animated Text -->
+<div class="context-text-mobile">
+    <div class="text-set set-1">
+        <p class="reveal-text">ICSID will decide AVZ's ownership dispute.</p>
+        <p class="reveal-text">A ruling that could impact the lithium industry.</p>
     </div>
 </div>
 
