@@ -23,37 +23,14 @@ body {
     padding: 2rem;
 }
 
-/* ✅ Responsive Scaling */
-html {
-    font-size: 1.2rem; /* Base scaling */
-}
-
-@media (min-width: 1600px) {
-    html {
-        font-size: 1.5rem; /* Increase scaling on large screens */
-    }
-}
-
-@media (max-width: 1200px) {
-    html {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    html {
-        font-size: 1rem;
-    }
-}
-
-/* ✅ Header */
+/* ✅ Manually Adjusted Sizes */
 .header-text {
-    font-size: 1.8rem;
+    font-size: 2.5rem;  /* Bigger text */
     font-weight: 600;
     text-align: left;
-    width: 40rem;
+    width: 50rem;  /* Wider */
     position: absolute;
-    top: 20%;
+    top: 18%;  /* Adjust this */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -61,11 +38,11 @@ html {
 /* ✅ Countdown */
 .countdown-container {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;  /* More spacing */
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 35%;
+    top: 38%;  /* Adjust this */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -73,10 +50,10 @@ html {
 /* ✅ Countdown Boxes */
 .counter {
     background: rgba(255, 255, 255, 0.1);
-    padding: 2.5rem;
+    padding: 3.5rem;  /* Bigger box */
     text-align: center;
-    width: 9rem;
-    height: 9rem;
+    width: 12rem;  /* Wider */
+    height: 12rem;  /* Taller */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,26 +61,26 @@ html {
 }
 
 .num {
-    font-size: 3.8rem;
+    font-size: 5rem;  /* Bigger numbers */
     font-weight: 700;
 }
 
 .text {
-    font-size: 1rem;
+    font-size: 1.5rem;  /* Bigger labels */
     opacity: 0.7;
     font-weight: 600;
 }
 
 /* ✅ Context Text */
 .context-text {
-    font-size: 1rem;
+    font-size: 1.5rem;  /* Bigger text */
     text-align: left;
-    width: 40rem;
+    width: 50rem;  /* Wider */
     position: absolute;
-    top: 60%;
+    top: 62%;  /* Adjust this */
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.5;
+    line-height: 1.8;
 }
 
 /* ✅ Text Set Styling */
@@ -124,12 +101,12 @@ html {
     transform: translateY(0);
 }
 
-/* ✅ Mobile Optimizations */
+/* ✅ Mobile Fix */
 @media (max-width: 768px) {
     .header-text {
-        font-size: 3rem;
+        font-size: 2rem;
         width: 90%;
-        top: 8%;
+        top: 10%;
     }
 
     .countdown-container {
@@ -137,7 +114,7 @@ html {
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
         width: 90%;
-        max-width: 25rem;
+        max-width: 30rem;
         top: 30%;
     }
 
@@ -145,21 +122,21 @@ html {
         width: 100%;
         height: auto;
         aspect-ratio: 1 / 1;
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .num {
-        font-size: 5rem;
+        font-size: 3rem;
     }
 
     .text {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .context-text {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         width: 90%;
-        top: 86%;
+        top: 85%;
     }
 }
 </style>
@@ -234,19 +211,6 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
-
-// ✅ Animate Text Sets in Sequence
-const textSets = document.querySelectorAll(".text-set");
-let index = 0;
-
-function showNextTextSet() {
-    textSets.forEach(set => set.classList.remove("active"));
-    textSets[index].classList.add("active");
-    index = (index + 1) % textSets.length;
-}
-
-setInterval(showNextTextSet, 5000);
-showNextTextSet();
 </script>
 
 </body>
