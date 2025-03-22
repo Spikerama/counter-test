@@ -25,7 +25,7 @@ body {
 
 /* ✅ Desktop Headline */
 .header-text-desktop {
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 600;
     text-align: left;
     width: 600px;
@@ -155,8 +155,8 @@ body {
 
 <!-- ✅ Desktop Headline -->
 <div class="header-text-desktop">
-    ICSID arbitration tribunal of AVZ vs<br>
-    The Democratic Republic of the Congo.
+    ICSID arbitration tribunal of AVZ vs DRC<br>
+    The Democratic Republic of Corruption.
 </div>
 
 <!-- ✅ Mobile Headline -->
@@ -191,6 +191,13 @@ body {
         <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
         <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
+
 </div>
 
 <!-- ✅ Mobile Animated Text -->
@@ -223,6 +230,7 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+<script>
 /* ✅ Venetian Blind Effect */
 function animateTextSets() {
     const textSets = document.querySelectorAll(".text-set");
@@ -238,11 +246,12 @@ function animateTextSets() {
             { opacity: 1, y: 0, stagger: 0.3, duration: 1.2 }
         );
 
+        // ✅ Added a delay before fading out (now waits 3 seconds)
         setTimeout(() => {
-            gsap.to(currentSet, { opacity: 0, duration: 0.8 });
+            gsap.to(currentSet, { opacity: 0, duration: 1.8 });
             currentSetIndex = (currentSetIndex + 1) % textSets.length;
             setTimeout(showNextSet, 300);
-        }, 3500);
+        }, 3500); // ⬅️ This used to be ~2500, now holds for 3.5s
     }
 
     showNextSet();
@@ -250,6 +259,3 @@ function animateTextSets() {
 
 animateTextSets();
 </script>
-
-</body>
-</html>
