@@ -230,7 +230,6 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-<script>
 /* ✅ Venetian Blind Effect */
 function animateTextSets() {
     const textSets = document.querySelectorAll(".text-set");
@@ -246,12 +245,11 @@ function animateTextSets() {
             { opacity: 1, y: 0, stagger: 0.3, duration: 1.2 }
         );
 
-        // ✅ Added a delay before fading out (now waits 3 seconds)
         setTimeout(() => {
             gsap.to(currentSet, { opacity: 0, duration: 1.8 });
             currentSetIndex = (currentSetIndex + 1) % textSets.length;
             setTimeout(showNextSet, 300);
-        }, 4500); // ⬅️ This used to be ~2500, now holds for 3.5s
+        }, 3500);
     }
 
     showNextSet();
@@ -259,3 +257,6 @@ function animateTextSets() {
 
 animateTextSets();
 </script>
+
+</body>
+</html>
