@@ -15,7 +15,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="628">
 
-<!-- ✅ Twitter Card Meta Tags (For better Twitter previews) -->
+<!-- ✅ Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AVZ vs DRC @ ICSID - Final Countdown">
 <meta name="twitter:description" content="Countdown to the ICSID tribunal ruling on AVZ’s ownership claim in the Manono Lithium Project.">
@@ -23,7 +23,7 @@
 <meta name="twitter:url" content="https://avz-icsid-final-countdown.netlify.app/">
 
 <style>
-/* Your existing styles here */
+/* ✅ Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -42,7 +42,7 @@ body {
     padding: 20px;
 }
 
-/* ✅ Desktop Headline */
+/* ✅ Headline */
 .header-text-desktop {
     font-size: 2.2em;
     font-weight: 600;
@@ -54,7 +54,6 @@ body {
     transform: translateX(-50%);
 }
 
-/* ✅ Mobile Headline (Hidden on Desktop) */
 .header-text-mobile {
     font-size: 3em;
     font-weight: 600;
@@ -67,7 +66,7 @@ body {
     display: none;
 }
 
-/* ✅ Countdown Timer */
+/* ✅ Countdown */
 .countdown-container {
     display: flex;
     gap: 20px;
@@ -80,7 +79,6 @@ body {
     transform: translateX(-50%);
 }
 
-/* ✅ Countdown Boxes */
 .counter {
     background: rgba(255, 255, 255, 0.1);
     padding: 40px;
@@ -117,7 +115,7 @@ body {
     line-height: 1.5;
 }
 
-/* ✅ Mobile Context Text (Hidden on Desktop) */
+/* ✅ Mobile Context Text */
 .context-text-mobile {
     font-size: 1.4em;
     text-align: left;
@@ -129,7 +127,7 @@ body {
     display: none;
 }
 
-/* Hide all text sets initially */
+/* Hide all mobile text sets initially */
 .text-set {
     opacity: 0;
     position: absolute;
@@ -172,18 +170,18 @@ body {
 </head>
 <body>
 
-<!-- ✅ Desktop Headline -->
+<!-- ✅ Headline -->
 <div class="header-text-desktop">
     ICSID arbitration tribunal of AVZ vs DRC<br>
     The Democratic Republic of Corruption.
 </div>
 
-<!-- ✅ Mobile Headline -->
 <div class="header-text-mobile">
     ICSID tribunal<br>
     AVZ vs DRC.
 </div>
 
+<!-- ✅ Countdown -->
 <div class="countdown-container">
     <div class="counter">
         <span class="num days">00</span>
@@ -201,6 +199,13 @@ body {
         <span class="num seconds">00</span>
         <div class="text">SECONDS</div>
     </div>
+</div>
+
+<!-- ✅ Desktop Context Text -->
+<div class="context-text-desktop">
+    <p>This is a placeholder text for Desktop.</p>
+    <p>This is a placeholder text for Desktop.</p>
+    <p>This is a placeholder text for Desktop.</p>
 </div>
 
 <!-- ✅ Mobile Context Text Animated Section -->
