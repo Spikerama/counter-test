@@ -221,38 +221,44 @@ function updateCountdown() {
     secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
 }
 
+// Call updateCountdown initially
 updateCountdown();
+
+// Update the countdown every second
 setInterval(updateCountdown, 1000);
 
-const textSetsDesktop = document.querySelectorAll(".context-text-desktop .text-set");
-const textSetsMobile = document.querySelectorAll(".context-text-mobile .text-set");
+// 🎬 Smooth Line-by-Line Animation
+const textSets = document.querySelectorAll(".text-set");
+let currentSetIndex = 0;
 
-let currentSetIndexDesktop = 0;
-let currentSetIndexMobile = 0;
+function showNextSet() {
+    const currentSet = textSets[currentSetIndex];
 
-// ✅ Start desktop animation
-function showNextDesktopSet() {
-    gsap.to(textSetsDesktop[currentSetIndexDesktop], { opacity: 1, duration: 1 });
+    // Show the current text set
+    gsap.to(currentSet, { opacity: 1, duration: 1 });
+
+    // Animate each line individually with stagger effect
+    gsap.fromTo(
+        currentSet.querySelectorAll(".reveal-text"),
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, stagger: 1.5, duration: 1.2 }
+    );
+
+    // Delay before switching to the next text set
+    let delayBeforeNext = 6000 + (currentSet.querySelectorAll(".reveal-text").length * 1500); // Adjust delay dynamically
+    let finalDelay = 3000;
+
     setTimeout(() => {
-        gsap.to(textSetsDesktop[currentSetIndexDesktop], { opacity: 0, duration: 1.8 });
-        currentSetIndexDesktop = (currentSetIndexDesktop + 1) % textSetsDesktop.length;
-        setTimeout(showNextDesktopSet, 1500);
-    }, 11000);
+        gsap.to(currentSet, { opacity: 0, duration: 1.5 });
+
+        currentSetIndex = (currentSetIndex + 1) % textSets.length;
+        let nextDelay = (currentSetIndex === 0) ? finalDelay : 1500;
+
+        setTimeout(showNextSet, nextDelay);
+    }, delayBeforeNext);
 }
 
-// ✅ Start mobile animation
-function showNextMobileSet() {
-    gsap.to(textSetsMobile[currentSetIndexMobile], { opacity: 1, duration: 0.8 });
-    setTimeout(() => {
-        gsap.to(textSetsMobile[currentSetIndexMobile], { opacity: 0, duration: 1.2 });
-        currentSetIndexMobile = (currentSetIndexMobile + 1) % textSetsMobile.length;
-        setTimeout(showNextMobileSet, 1000);
-    }, 8000);
-}
-
-showNextDesktopSet();
-showNextMobileSet();
-
+// Start the animation loop
+showNextSet();
 </script>
-</body>
-</html>
+
