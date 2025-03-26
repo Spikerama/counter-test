@@ -327,18 +327,15 @@ let currentSetIndex = 0;
 function showNextSet() {
     const currentSet = textSets[currentSetIndex];
 
-    // Show the current text set
     gsap.to(currentSet, { opacity: 1, duration: 1 });
 
-    // Animate each line individually with stagger effect
     gsap.fromTo(
         currentSet.querySelectorAll(".reveal-text"),
         { opacity: 0, y: 15 },
         { opacity: 1, y: 0, stagger: 1.5, duration: 1.2 }
     );
 
-    // Delay before switching to the next text set
-    let delayBeforeNext = 6000 + (currentSet.querySelectorAll(".reveal-text").length * 1500); // Adjust delay dynamically
+    let delayBeforeNext = 6000 + (currentSet.querySelectorAll(".reveal-text").length * 1500);
     let finalDelay = 3000;
 
     setTimeout(() => {
@@ -351,6 +348,6 @@ function showNextSet() {
     }, delayBeforeNext);
 }
 
-// Start the animation loop
 showNextSet();
+;
 </script>
