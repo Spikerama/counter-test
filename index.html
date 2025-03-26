@@ -324,11 +324,11 @@ setInterval(updateCountdown, 1000);
 const textSets = document.querySelectorAll(".text-set");
 let currentSetIndex = 0;
 
-function showNextSet() {
+function showNextSet(immediate = false) {
     const currentSet = textSets[currentSetIndex];
 
-    // Show the current text set immediately
-    gsap.to(currentSet, { opacity: 1, duration: 1 });
+    // Show the current text set immediately or with animation
+    gsap.to(currentSet, { opacity: 1, duration: immediate ? 0 : 1 });
 
     // Animate each line individually with a stagger effect
     gsap.fromTo(
@@ -341,21 +341,19 @@ function showNextSet() {
     let delayBeforeNext = 2000 + (currentSet.querySelectorAll(".reveal-text").length * 1500);
 
     setTimeout(() => {
-        // Fade out current text set before switching
         gsap.to(currentSet, { opacity: 0, duration: 1.2 });
 
-        // Move to next set
         currentSetIndex = (currentSetIndex + 1) % textSets.length;
 
-        // Remove long lag after last set
         let nextDelay = (currentSetIndex === 0) ? 100 : 1500;
 
         setTimeout(showNextSet, nextDelay);
     }, delayBeforeNext);
 }
 
-// Start animation immediately when page loads
-showNextSet();
+// Start animation immediately on load
+showNextSet(true);
+
 
 ;
 </script>
