@@ -355,7 +355,14 @@ function showNextSet() {
 }
 
 // Start animation immediately when page loads
-showNextSet();
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (isMobile) {
+    setTimeout(showNextSet, 1000); // Adjust mobile delay here
+} else {
+    showNextSet(); // Desktop starts immediately
+}
+
 
 ;
 </script>
