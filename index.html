@@ -294,79 +294,62 @@ body {
     </div>
 </div>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
+// Countdown timer logic
+const countdownElements = {
+    days: document.querySelector('.days'),
+    hours: document.querySelector('.hours'),
+    minutes: document.querySelector('.minutes'),
+    seconds: document.querySelector('.seconds'),
+};
 
-const countdownDate = new Date("2025-06-02T00:00:00").getTime();
-const daysElem = document.querySelector(".days");
-const hoursElem = document.querySelector(".hours");
-const minutesElem = document.querySelector(".minutes");
-const secondsElem = document.querySelector(".seconds");
+const targetDate = new Date('2025-03-27T00:00:00Z');
 
 function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
+    const now = new Date();
+    const timeLeft = targetDate - now;
+    
+    if (timeLeft <= 0) {
+        clearInterval(interval);
+    }
 
-    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
-    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
-    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
-    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
+    const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const secondsLeft = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+    countdownElements.days.textContent = daysLeft < 10 ? '0' + daysLeft : daysLeft;
+    countdownElements.hours.textContent = hoursLeft < 10 ? '0' + hoursLeft : hoursLeft;
+    countdownElements.minutes.textContent = minutesLeft < 10 ? '0' + minutesLeft : minutesLeft;
+    countdownElements.seconds.textContent = secondsLeft < 10 ? '0' + secondsLeft : secondsLeft;
 }
 
-// Call updateCountdown initially
-updateCountdown();
+const interval = setInterval(updateCountdown, 1000);
+updateCountdown(); 
 
-// Update the countdown every second
-setInterval(updateCountdown, 1000);
+// Text animation setup
+const textSetsDesktop = document.querySelectorAll('.text-set');
+const textSetsMobile = document.querySelectorAll('.context-text-mobile .text-set');
+const transitionDuration = 4000;  // Text transition delay
+const loopDelay = 2000;  // Delay before restarting the text set cycle
 
-// 🎬 Smooth Line-by-Line Animation
-const textSets = document.querySelectorAll(".text-set");
-let currentSetIndex = 0;
+function animateTextSets(sets, delay) {
+    let currentSet = 0;
+    sets[currentSet].style.opacity = 1;
 
-function showNextSet() {
-    const currentSet = textSets[currentSetIndex];
-
-    // Show the current text set immediately
-    gsap.to(currentSet, { opacity: 1, duration: 1 });
-
-    // Animate each line individually with a stagger effect
-    gsap.fromTo(
-        currentSet.querySelectorAll(".reveal-text"),
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, stagger: 1.5, duration: 1.2 }
-    );
-
-    // Calculate total delay dynamically
-    let delayBeforeNext = 2000 + (currentSet.querySelectorAll(".reveal-text").length * 1500);
-
-    setTimeout(() => {
-        // Fade out current text set before switching
-        gsap.to(currentSet, { opacity: 0, duration: 1.2 });
-
-        // Move to next set
-        currentSetIndex = (currentSetIndex + 1) % textSets.length;
-
-        // Remove long lag after last set
-        let nextDelay = (currentSetIndex === 0) ? 100 : 1500;
-
-        setTimeout(showNextSet, nextDelay);
-    }, delayBeforeNext);
+    setInterval(() => {
+        sets[currentSet].style.opacity = 0;
+        currentSet = (currentSet + 1) % sets.length;
+        sets[currentSet].style.opacity = 1;
+    }, transitionDuration + delay);
 }
 
-// Start animation immediately when page loads
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-if (isMobile) {
-    // 🔥 Force the first text set to appear instantly
-    const firstSet = document.querySelector(".text-set");
-    gsap.set(firstSet, { opacity: 1 });
-
-    // 🔥 Start the animation immediately
-    setTimeout(showNextSet, 100);
+if (window.innerWidth <= 768) {
+    animateTextSets(textSetsMobile, loopDelay);
 } else {
-    showNextSet(); // Desktop timing unchanged
+    animateTextSets(textSetsDesktop, loopDelay);
 }
-
-;
 </script>
+
+</body>
+</html>
