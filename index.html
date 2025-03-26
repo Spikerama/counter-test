@@ -327,12 +327,13 @@ function updateCountdown() {
 const interval = setInterval(updateCountdown, 1000);
 updateCountdown(); 
 
-// Text animation setup
+// Text animation setup for desktop
 const textSetsDesktop = document.querySelectorAll('.text-set');
 const textSetsMobile = document.querySelectorAll('.context-text-mobile .text-set');
-const transitionDuration = 4000;  // Text transition delay
-const loopDelay = 2000;  // Delay before restarting the text set cycle
+const transitionDuration = 4000;  // Text transition duration
+const loopDelay = 2000;  // Loop delay before restart
 
+// Animate function with staggered transition on desktop
 function animateTextSets(sets, delay) {
     let currentSet = 0;
     sets[currentSet].style.opacity = 1;
