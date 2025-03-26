@@ -358,11 +358,15 @@ function showNextSet() {
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 if (isMobile) {
-    setTimeout(showNextSet, 100); // Adjust mobile delay here
-} else {
-    showNextSet(); // Desktop starts immediately
-}
+    // 🔥 Force the first text set to appear instantly
+    const firstSet = document.querySelector(".text-set");
+    gsap.set(firstSet, { opacity: 1 });
 
+    // 🔥 Start the animation immediately
+    setTimeout(showNextSet, 100);
+} else {
+    showNextSet(); // Desktop timing unchanged
+}
 
 ;
 </script>
