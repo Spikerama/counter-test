@@ -327,27 +327,35 @@ let currentSetIndex = 0;
 function showNextSet() {
     const currentSet = textSets[currentSetIndex];
 
+    // Show the current text set immediately
     gsap.to(currentSet, { opacity: 1, duration: 1 });
 
+    // Animate each line individually with a stagger effect
     gsap.fromTo(
         currentSet.querySelectorAll(".reveal-text"),
         { opacity: 0, y: 15 },
         { opacity: 1, y: 0, stagger: 1.5, duration: 1.2 }
     );
 
-    let delayBeforeNext = 6000 + (currentSet.querySelectorAll(".reveal-text").length * 1500);
-    let finalDelay = 3000;
+    // Calculate total delay dynamically
+    let delayBeforeNext = 2000 + (currentSet.querySelectorAll(".reveal-text").length * 1500);
 
     setTimeout(() => {
-        gsap.to(currentSet, { opacity: 0, duration: 1.5 });
+        // Fade out current text set before switching
+        gsap.to(currentSet, { opacity: 0, duration: 1.2 });
 
+        // Move to next set
         currentSetIndex = (currentSetIndex + 1) % textSets.length;
-        let nextDelay = (currentSetIndex === 0) ? finalDelay : 1500;
+
+        // Remove long lag after last set
+        let nextDelay = (currentSetIndex === 0) ? 500 : 1500;
 
         setTimeout(showNextSet, nextDelay);
     }, delayBeforeNext);
 }
 
-showNextSet();
+// Start animation immediately when page loads
+setTimeout(showNextSet, 100);
+
 ;
 </script>
