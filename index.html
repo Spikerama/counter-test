@@ -295,3 +295,44 @@ body {
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+// Control the delay for the mobile animation start (in milliseconds)
+let mobileAnimationDelay = 3000; // Customize the value
+
+// 🎬 Smooth Line-by-Line Animation
+const textSetsMobile = document.querySelectorAll(".context-text-mobile .text-set");
+let currentSetIndexMobile = 0;
+
+function showNextSetMobile() {
+    const currentSet = textSetsMobile[currentSetIndexMobile];
+
+    // Show the current text set with GSAP
+    gsap.to(currentSet, { opacity: 1, duration: 1 });
+
+    // Animate each line individually with stagger effect
+    gsap.fromTo(
+        currentSet.querySelectorAll(".reveal-text"),
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, stagger: 1.5, duration: 1.2 }
+    );
+
+    // Delay before switching to the next text set
+    let delayBeforeNext = 6000 + (currentSet.querySelectorAll(".reveal-text").length * 1500); // Adjust delay dynamically
+    let finalDelay = 3000;
+
+    setTimeout(() => {
+        gsap.to(currentSet, { opacity: 0, duration: 1.5 });
+
+        currentSetIndexMobile = (currentSetIndexMobile + 1) % textSetsMobile.length;
+        let nextDelay = (currentSetIndexMobile === 0) ? finalDelay : 1500;
+
+        setTimeout(showNextSetMobile, nextDelay);
+    }, delayBeforeNext);
+}
+
+// Start the animation loop for mobile after the configured delay
+setTimeout(showNextSetMobile, mobileAnimationDelay);
+
+</script>
+</body>
+</html>
