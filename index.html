@@ -114,27 +114,27 @@ body {
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.5;
-    opacity: 0; /* Initially hidden */
+    display: none; /* Initially hidden */
 }
 
-/* ✅ Mobile Context Text (Hidden on Desktop) */
+/* ✅ Mobile Context Text */
 .context-text-mobile {
     font-size: 1.4em;
     text-align: left;
     width: 90%;
     position: absolute;
-    top: 86%;
+    top: 65%; /* Adjust as needed */
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.5;
-    display: none; /* Hidden on desktop */
-    opacity: 0; /* Initially hidden */
+    display: none; /* Initially hidden */
 }
 
 /* Hide all text sets initially */
 .text-set {
     position: absolute;
     width: 100%;
+    opacity: 0;
 }
 
 /* ✅ Mobile Optimization */
@@ -313,7 +313,7 @@ const desktopTextSets = document.querySelectorAll(".context-text-desktop .text-s
 const mobileTextSets = document.querySelectorAll(".context-text-mobile .text-set");
 let currentSetIndex = 0;
 let isDesktop = window.innerWidth > 768;
-let activeTextSets = isDesktop ? desktopTextSets : mobileTextSets;
+let activeTextSets;
 
 function showNextSet() {
     const currentSet = activeTextSets[currentSetIndex];
@@ -339,11 +339,19 @@ function showNextSet() {
 }
 
 function initializeTextAnimation() {
-    currentSetIndex = 0;
     isDesktop = window.innerWidth > 768;
     activeTextSets = isDesktop ? desktopTextSets : mobileTextSets;
-    gsap.to(".context-text-desktop .text-set, .context-text-mobile .text-set", { opacity: 0, duration: 0 }); // Hide all
-    setTimeout(showNextSet, 500);
+    currentSetIndex = 0;
+
+    // Hide both containers initially for a clean start
+    gsap.to(".context-text-desktop", { display: "none", opacity: 0, duration: 0 });
+    gsap.to(".context-text-mobile", { display: "none", opacity: 0, duration: 0 });
+
+    if (isDesktop) {
+        gsap.to(".context-text-desktop", { display: "block", opacity: 1, duration: 0, onComplete: showNextSet });
+    } else {
+        gsap.to(".context-text-mobile", { display: "block", opacity: 1, duration: 0, onComplete: showNextSet });
+    }
 }
 
 initializeTextAnimation();
