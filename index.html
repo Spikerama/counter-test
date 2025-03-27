@@ -48,7 +48,7 @@ body {
     text-align: left;
     width: 730px;
     position: absolute;
-    top: 20%;
+    top: 40%; /* Adjusted top position */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -74,7 +74,7 @@ body {
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 35%;
+    top: 25%; /* Adjusted top position */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -123,7 +123,7 @@ body {
     text-align: left;
     width: 90%;
     position: absolute;
-    top: 80%; /* Adjust as needed */
+    top: 75%; /* Adjusted top position */
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.5;
@@ -257,81 +257,59 @@ body {
 
     <div class="text-set set-3">
         <p class="reveal-text">AVZ only seeks to restore its rightful stake in the Manono Lithium Project.</p>
-     </div>
+    </div>
 
     <div class="text-set set-4">
-        <p class="reveal-text">Soon, the ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
-
+        <p class="reveal-text">Partial penalty to be enforced amounts to €39.125 million plus interest.</p>
     </div>
 
     <div class="text-set set-5">
-        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a huge legal</p>
-
+        <p class="reveal-text">$150 million worth of development by AVZ was illegally seized.</p>
     </div>
 
     <div class="text-set set-6">
-       <p class="reveal-text">victory against the DRC's La Congolaise d'Exploitation Minière (Cominière).</p>
-
-    </div>
-   
-     <div class="text-set set-1">
-        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+        <p class="reveal-text">Corruption well documented by the General Inspectorate of Finance.</p>
     </div>
 
-    <div class="text-set set-2">
-        <p class="reveal-text">$150 million worth of development by AVZ was illegally seized by Cominière.</p>
+    <div class="text-set set-7">
+        <p class="reveal-text">Cominière gifted the project for a $6 million bribe.</p>
     </div>
 
-    <div class="text-set set-3">
-        <p class="reveal-text">This corruption is well documented by the General Inspectorate of Finance.</p>
-     </div>
-
-    <div class="text-set set-4">
-       <p class="reveal-text">Cominière, for a $6 million bribe, gifted the project to the Chinese miners.</p>
-
+    <div class="text-set set-8">
+        <p class="reveal-text">21,000 AVZ investors had their wealth stolen.</p>
     </div>
 
-    <div class="text-set set-5">
-        <p class="reveal-text">21,000 AVZ investors had their wealth stolen, lives ruined, hopes squashed.</p>
-
-    </div>
- 
-    <div class="text-set set-6">
-        <p class="reveal-text">Some shareholders have even died whilst waiting for justice in the courts.</p>
-
+    <div class="text-set set-9">
+        <p class="reveal-text">Some shareholders have even died whilst waiting for justice.</p>
     </div>
 
-    <div class="text-set set-6">
-        <p class="reveal-text">Meanwhile, Cominière & Zijin thumb their nose at ICC court orders to desist.</p>
-
-    </div>
-   
-     <div class="text-set set-1">
-        <p class="reveal-text">The people of the DRC should be thriving but their future has been raped.</p>
+    <div class="text-set set-10">
+        <p class="reveal-text">Cominière & Zijin ignore ICC court orders.</p>
     </div>
 
-    <div class="text-set set-2">
-        <p class="reveal-text">Manono's riches fund not roads, schools or hospitals but vacations for Elites.</p>
+    <div class="text-set set-11">
+        <p class="reveal-text">DRC's future has been raped.</p>
     </div>
 
-    <div class="text-set set-3">
-        <p class="reveal-text">The world sits silent as Manono is looted, and the Congolese stay in poverty.</p>
-     </div>
-
-    <div class="text-set set-4">
-         <p class="reveal-text">AVZ is still fighting in international courts — and they’re winning every case.</p>
-
+    <div class="text-set set-12">
+        <p class="reveal-text">Manono's riches fund vacations for Elites.</p>
     </div>
 
-    <div class="text-set set-5">
-         <p class="reveal-text">The truth is out and the time is up for the corrupt politicians of the DRC.</p>
-
-    </div>
- 
-    <div class="text-set set-6">
-        <p class="reveal-text">A blistering sunrise is about to shed light on it all. And it won’t be pretty.</p>
+    <div class="text-set set-13">
+        <p class="reveal-text">World sits silent as Manono is looted.</p>
     </div>
 
+    <div class="text-set set-14">
+        <p class="reveal-text">AVZ is still fighting in international courts — and winning.</p>
+    </div>
+
+    <div class="text-set set-15">
+        <p class="reveal-text">Time is up for the corrupt politicians of the DRC.</p>
+    </div>
+
+    <div class="text-set set-16">
+        <p class="reveal-text">A blistering sunrise is about to shed light on it all.</p>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -364,19 +342,34 @@ const mobileTextSets = document.querySelectorAll(".context-text-mobile .text-set
 let currentSetIndex = 0;
 let isDesktop = window.innerWidth > 768;
 let activeTextSets;
+let mobileDelayBeforeNext = 5000; // Set your desired mobile delay here (in milliseconds)
+let mobileFinalDelay = 2000;   // Set your desired mobile final delay here
 
 function showNextSet() {
     const currentSet = activeTextSets[currentSetIndex];
     gsap.to(currentSet, { opacity: 1, duration: 1 });
 
+    const revealTextElements = currentSet.querySelectorAll(".reveal-text");
+
+    let staggerValue;
+    let revealDuration;
+
+    if (isDesktop) {
+        staggerValue = 2.5; // Restore your original desktop stagger value
+        revealDuration = 1.2; // Restore your original desktop duration
+    } else {
+        staggerValue = 0.5; // Keep the mobile stagger
+        revealDuration = 0.8; // Keep the mobile duration
+    }
+
     gsap.fromTo(
-        currentSet.querySelectorAll(".reveal-text"),
+        revealTextElements,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 2.5, duration: 1.2 }
+        { opacity: 1, y: 0, stagger: staggerValue, duration: revealDuration }
     );
 
-    let delayBeforeNext = 11000;
-    let finalDelay = 3000;
+    let delayBeforeNext = isDesktop ? 11000 : mobileDelayBeforeNext;
+    let finalDelay = isDesktop ? 3000 : mobileFinalDelay;
 
     setTimeout(() => {
         gsap.to(currentSet, { opacity: 0, duration: 1.8 });
@@ -408,6 +401,5 @@ initializeTextAnimation();
 
 window.addEventListener('resize', initializeTextAnimation);
 </script>
-
 </body>
 </html>
